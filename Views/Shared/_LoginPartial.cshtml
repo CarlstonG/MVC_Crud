@@ -1,0 +1,23 @@
+@using Microsoft.AspNetCore.Identity
+@using ExpenseTracker.Models
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    var user = UserManager.GetUserAsync(User).Result;
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div>
+        <a asp-area="Identity" asp-page="/Account/Manage/Index">Hello, @user.UserName</a> |
+        <a asp-area="Identity" asp-page="/Account/Logout">Logout</a>
+    </div>
+}
+else
+{
+    <div>
+        <a asp-area="Identity" asp-page="/Account/Login">Login</a> |
+        <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </div>
+}

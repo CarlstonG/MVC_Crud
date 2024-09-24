@@ -1,0 +1,30 @@
+@model IEnumerable<ExpenseTracker.Models.Expense>
+
+<h2>Your Expenses</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var expense in Model)
+        {
+            <tr>
+                <td>@expense.Description</td>
+                <td>@expense.Amount</td>
+                <td>@expense.Date.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@expense.Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@expense.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Add New Expense</a>
